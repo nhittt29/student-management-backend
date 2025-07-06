@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, Types } from 'mongoose';
 import { BaseUser } from './BaseUser';
 
 export const Student = BaseUser.discriminator('Student', new Schema({

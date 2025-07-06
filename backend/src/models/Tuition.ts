@@ -6,6 +6,7 @@ export interface ITuition extends Document {
   extraFeeIds: Types.ObjectId[];
   discountId?: Types.ObjectId;
   totalAmount: number;
+  attendedDays: number; //Tổng số ngày học sinh có mặt trong tháng
   status: 'paid' | 'pending';
 }
 
@@ -15,6 +16,7 @@ const TuitionSchema = new Schema<ITuition>({
   extraFeeIds: [{ type: Schema.Types.ObjectId, ref: 'ExtraFee' }],
   discountId: { type: Schema.Types.ObjectId, ref: 'DiscountPolicy' },
   totalAmount: { type: Number, required: true },
+  attendedDays: { type: Number, default: 0 }, //thêm
   status: { type: String, enum: ['paid', 'pending'], default: 'pending' }
 }, { timestamps: true });
 
