@@ -6,6 +6,7 @@ export interface IClass extends Document {
   schoolId: Types.ObjectId;
   teacherId?: Types.ObjectId;
   students: Types.ObjectId[];
+  baseFee: number; // ✅ Học phí mặc định của lớp
 }
 
 const ClassSchema = new Schema<IClass>({
@@ -13,7 +14,8 @@ const ClassSchema = new Schema<IClass>({
   code: { type: String, required: true, unique: true },
   schoolId: { type: Schema.Types.ObjectId, ref: 'School', required: true },
   teacherId: { type: Schema.Types.ObjectId, ref: 'User' },
-  students: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  students: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  baseFee: { type: Number, required: true }
 }, { timestamps: true });
 
 export default mongoose.model<IClass>('Class', ClassSchema);
